@@ -263,6 +263,12 @@ public class DummyImportExportImplTest {
             }
 
             @Override
+            public Resource doVRead(String type, String id, String versionId, Map<String, String> requestProperties,
+                MultivaluedMap<String, String> queryParameters) throws Exception {
+                return null;
+            }
+
+            @Override
             public Resource doVRead(String type, String id, String versionId, Map<String, String> requestProperties)
                     throws Exception {
                 return null;

@@ -571,6 +571,30 @@ public abstract class FHIRServerTestBase {
     }
 
     /**
+     * For the specified response, this function will extract the version id value
+     * from the response's Location header. The format of a location header value
+     * should be: <code>[base]/<resource-type>/<id>/_history/<version></code>
+     *
+     * @param response the response object for a REST API invocation
+     * @return the version id value
+     */
+    public String getLocationVersionId(Response response) {
+        String location = response.getLocation().toString();
+        assertNotNull(location);
+        assertFalse(location.isEmpty());
+
+        String[] tokens = location.split("/");
+        assertNotNull(tokens);
+        assertTrue(tokens.length >= 4);
+
+        String versionId = tokens[tokens.length - 1];
+        assertNotNull(versionId);
+        assertFalse(versionId.isEmpty());
+
+        return versionId;
+    }
+
+    /**
      * Returns the absolute filename associated with 'filename'.
      */
     private String getAbsoluteFilename(String filename) {
